@@ -21,7 +21,7 @@ jobs:
       - name: "Get branch name and sha"
         id: get_branch
         run: |
-          PR=$(curl -H "X-Kuroco-Auth: token 11be70950cdd4163537b05b7bd8bede3" https://mkixine-angular.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
+          PR=$(curl -H "X-Kuroco-Auth: token 7b95f1f98bba6852158a2fc067388dca" https://mkixine-json.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
           echo "branch=$(echo $PR | jq -r '.ref')" >> $GITHUB_OUTPUT
           echo "sha=$(echo $PR | jq -r '.sha')" >> $GITHUB_OUTPUT
       - name: Checkout Repo
@@ -59,9 +59,9 @@ jobs:
       - name: Webhook
         uses: diverta/workflow-webhook@v3
         env:
-          webhook_url: "https://mkixine-angular.g.kuroco.app/direct/menu/github/"
-          webhook_secret: "11be70950cdd4163537b05b7bd8bede3"
-          data: '{"single_zip":"1","domain":"mkixine-angular.g.kuroco-front.app","pr":"${{ github.event.issue.pull_request.url }}",  "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ steps.get_branch.outputs.sha }}"}'
+          webhook_url: "https://mkixine-json.g.kuroco.app/direct/menu/github/"
+          webhook_secret: "7b95f1f98bba6852158a2fc067388dca"
+          data: '{"single_zip":"1","domain":"mkixine-json.g.kuroco-front.app","pr":"${{ github.event.issue.pull_request.url }}",  "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ steps.get_branch.outputs.sha }}"}'
           
   #for Push
   pushed_build:
@@ -100,6 +100,6 @@ jobs:
       - name: Webhook
         uses: diverta/workflow-webhook@v3
         env:
-          webhook_url: "https://mkixine-angular.g.kuroco.app/direct/menu/github/"
-          webhook_secret: "11be70950cdd4163537b05b7bd8bede3"
-          data: '{"single_zip":"1","domain":"mkixine-angular.g.kuroco-front.app", "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ github.sha }}"}'
+          webhook_url: "https://mkixine-json.g.kuroco.app/direct/menu/github/"
+          webhook_secret: "7b95f1f98bba6852158a2fc067388dca"
+          data: '{"single_zip":"1","domain":"mkixine-json.g.kuroco-front.app", "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ github.sha }}"}'
